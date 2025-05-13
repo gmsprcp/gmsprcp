@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino 2025 - Com Timers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-card: #ffffff;
+            --color-primary: #4361ee;
+            --color-secondary: #3a0ca3;
+            --color-accent: #4cc9f0;
+            --color-strength: #4895ef;
+            --color-hypertrophy: #560bad;
+            --color-metabolic: #f72585;
+            --color-text: #2b2d42;
+            --color-text-light: #6c757d;
+            --color-border: #e9ecef;
+            --color-table-header: #f1f3f5;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --font-family: 'Outfit', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-card: #1e1e1e;
+            --color-primary: #4cc9f0;
+            --color-secondary: #7b2cbf;
+            --color-accent: #3a86ff;
+            --color-strength: #5aa9fa;
+            --color-hypertrophy: #a46efa;
+            --color-metabolic: #fa5a9d;
+            --color-text: #e9ecef;
+            --color-text-light: #adb5bd;
+            --color-border: #33373a; /* Ajustado para melhor visibilidade no dark mode */
+            --color-table-header: #2a2a2a;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white; padding: 2rem 1rem; text-align: center;
+            box-shadow: var(--shadow-md); position: relative; overflow: hidden;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        .header-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        .header-bg {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+        }
+        .app-title { font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .app-subtitle { font-size: 1.1rem; font-weight: 400; opacity: 0.9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+
+        .theme-toggle {
+            position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.2);
+            border: none; color: white; border-radius: 50%; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: background 0.3s; z-index: 10;
+        }
+        .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); }
+        [data-theme="dark"] .theme-toggle { background: rgba(0,0,0,0.2); color: var(--color-text); }
+        [data-theme="dark"] .theme-toggle:hover { background: rgba(0,0,0,0.3); }
+
+        .workout-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .workout-card {
+            background-color: var(--bg-card); border-radius: var(--radius-md);
+            overflow: hidden; box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease; border: 1px solid var(--color-border);
+        }
+        .workout-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+        .card-header {
+            padding: 1.25rem; display: flex; flex-direction: column; cursor: pointer;
+            position: relative; border-bottom: 1px solid transparent;
+        }
+        .card-header.no-border { border-bottom-color: transparent; }
+        .card-header.active { border-bottom-color: var(--color-border); }
+
+        .day-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em; color: var(--color-text); }
+        .badge-container { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .badge { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 9999px; }
+        .badge-strength { background-color: var(--color-strength); color: white; }
+        [data-theme="dark"] .badge-strength { background-color: var(--color-strength); color: #121212; }
+        .badge-hypertrophy { background-color: var(--color-hypertrophy); color: white; }
+        [data-theme="dark"] .badge-hypertrophy { background-color: var(--color-hypertrophy); color: #121212; }
+        .badge-metabolic { background-color: var(--color-metabolic); color: white; }
+        [data-theme="dark"] .badge-metabolic { background-color: var(--color-metabolic); color: #121212; }
+
+        .card-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; padding: 0 0.5rem; }
+        .card-content.active { max-height: 2000px; padding: 0 0.5rem 0.5rem 0.5rem; }
+        .content-wrapper { padding: 0.5rem 0.75rem; }
+
+        .table-responsive { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; margin-bottom: 0.5rem; }
+        .exercises-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; color: var(--color-text); min-width: 550px; /* Aumentado para acomodar nova coluna */ }
+
+        .exercises-table th, .exercises-table td {
+             padding: 0.6rem 0.8rem; /* Reduzido padding para mais espaço */
+             text-align: left;
+             border-bottom: 1px solid var(--color-border);
+             white-space: nowrap;
+        }
+        .exercises-table th {
+            background-color: var(--color-table-header);
+            font-weight: 600; font-size: 0.75rem; /* Reduzido font-size */
+            text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--color-text-light);
+        }
+        .exercises-table tr:nth-child(even) { background-color: color-mix(in srgb, var(--bg-card) 95%, var(--color-border)); }
+        [data-theme="dark"] .exercises-table tr:nth-child(even) { background-color: color-mix(in srgb, var(--bg-card) 95%, var(--color-border)); }
+
+
+        @media (max-width: 700px) {
+            .exercises-table { display: block; min-width: 0; }
+            .exercises-table thead { display: none; }
+            .exercises-table tbody, .exercises-table tr, .exercises-table td { display: block; white-space: normal; }
+            .exercises-table tr { margin-bottom: 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.5rem; background-color: var(--bg-card); }
+            .exercises-table td { display: flex; justify-content: space-between; text-align: right; padding: 0.5rem 0; border-bottom: 1px dashed var(--color-border); }
+            .exercises-table td::before { content: attr(data-label); font-weight: 600; text-align: left; margin-right: 1rem; color: var(--color-text); flex-shrink: 0; }
+            .exercises-table td:last-child { border-bottom: none; }
+            .timer-cell { flex-direction: row !important; align-items: center; } /* Garante que no mobile o timer fique em linha */
+            .timer-cell::before { margin-bottom: 0; }
+            .timer-display { margin-left: auto; }
+        }
+        
+        .cardio-section {
+            padding: 1rem; background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+            border-left: 3px solid var(--color-accent); border-radius: var(--radius-sm);
+            margin: 1rem; font-size: 0.9rem; color: var(--color-text-light);
+        }
+        [data-theme="dark"] .cardio-section { background-color: color-mix(in srgb, var(--color-accent) 20%, transparent); border-left-color: var(--color-accent); color: var(--color-text-light); }
+        .cardio-title { font-weight: 600; margin-bottom: 0.25rem; color: var(--color-text); }
+
+        .toggle-icon { position: absolute; top: 50%; transform: translateY(-50%); right: 1.25rem; font-size: 1.25rem; transition: transform 0.3s ease; color: var(--color-primary); }
+        .card-header.active .toggle-icon { transform: translateY(-50%) rotate(180deg); }
+        [data-theme="dark"] .toggle-icon { color: var(--color-accent); }
+
+        .rest-day-card { padding: 2rem; text-align: center; background-color: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--color-border); grid-column: 1 / -1; }
+        .rest-day-icon { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 1rem; }
+        .rest-day-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-text); }
+        .rest-day-text { color: var(--color-text-light); max-width: 500px; margin: 0 auto; }
+
+        footer { margin-top: 3rem; text-align: center; padding: 2rem 1rem; color: var(--color-text-light); font-size: 0.9rem; border-top: 1px solid var(--color-border); }
+        
+        .fixed-action-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
+        .action-btn {
+            width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white; border: none; box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .action-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-lg), 0 0 25px color-mix(in srgb, var(--color-primary) 50%, transparent); }
+
+        .week-nav { display: flex; justify-content: center; margin: 1.5rem 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 0.5rem; }
+        .week-nav::-webkit-scrollbar { display: none; }
+        .day-btn {
+            font-size: 0.85rem; padding: 0.5rem 0.75rem; background-color: var(--bg-card); border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm); color: var(--color-text); margin: 0 0.25rem; cursor: pointer; transition: all 0.2s ease;
+            min-width: 80px; text-align: center; white-space: nowrap; display: flex; flex-direction: column; align-items: center; box-shadow: var(--shadow-sm);
+        }
+        .day-btn .day-short { font-weight: 600; }
+        .day-btn .day-long { font-size: 0.7rem; color: var(--color-text-light); }
+        .day-btn.active { background-color: var(--color-primary); color: white; border-color: var(--color-primary); box-shadow: var(--shadow-md), 0 0 15px color-mix(in srgb, var(--color-primary) 30%, transparent); transform: translateY(-1px); }
+        [data-theme="dark"] .day-btn.active { background-color: var(--color-primary); color: var(--bg-primary); border-color: var(--color-primary); }
+        .day-btn.active .day-long { color: rgba(255, 255, 255, 0.8); }
+        [data-theme="dark"] .day-btn.active .day-long { color: color-mix(in srgb, var(--bg-primary) 80%, transparent); }
+
+        .profile-card { display: flex; align-items: center; background-color: var(--bg-card); border-radius: var(--radius-md); padding: 1rem; margin: 1.5rem 0; box-shadow: var(--shadow-sm); border: 1px solid var(--color-border); }
+        .profile-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; margin-right: 1rem; flex-shrink: 0; }
+        .profile-info { flex: 1; }
+        .profile-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-text); }
+        .profile-stats { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--color-text-light); flex-wrap: wrap; }
+        .stat-item { display: flex; align-items: center; }
+        .stat-icon { margin-right: 0.35rem; color: var(--color-primary); }
+        [data-theme="dark"] .stat-icon { color: var(--color-accent); }
+
+        .card-content.active .content-wrapper { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Timer Styles */
+        .timer-cell { vertical-align: middle; text-align: left;} /* Alinhamento para desktop */
+        .start-timer-btn {
+            background-color: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 0.4rem 0.7rem; /* Ajustado padding */
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.2s, opacity 0.2s;
+            display: inline-flex; /* Para alinhar ícone e texto */
+            align-items: center;
+            gap: 0.3rem; /* Espaço entre ícone e texto */
+            white-space: nowrap; /* Evita quebra de linha no texto do botão */
+        }
+        .start-timer-btn:hover {
+            background-color: color-mix(in srgb, var(--color-accent) 80%, black);
+        }
+        .start-timer-btn:disabled {
+            background-color: var(--color-text-light);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        [data-theme="dark"] .start-timer-btn {
+            background-color: var(--color-accent);
+            color: var(--bg-primary); /* Texto escuro no botão claro do tema escuro */
+        }
+        [data-theme="dark"] .start-timer-btn:hover {
+            background-color: color-mix(in srgb, var(--color-accent) 80%, white);
+        }
+         [data-theme="dark"] .start-timer-btn:disabled {
+            background-color: var(--color-border);
+            color: var(--color-text-light);
+        }
+
+        .timer-display {
+            font-weight: 600;
+            color: var(--color-primary);
+            min-width: 70px; /* Espaço para "00:00" ou "Finalizado!" */
+            display: inline-block;
+            text-align: center;
+            margin-left: 0.5rem;
+            font-size: 0.9em;
+        }
+        [data-theme="dark"] .timer-display {
+            color: var(--color-accent);
+        }
+
+
+        @media (max-width: 768px) {
+            .workout-cards { grid-template-columns: 1fr; }
+            .app-title { font-size: 1.75rem; } .app-subtitle { font-size: 1rem; }
+            .profile-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .profile-avatar { margin-right: 0; margin-bottom: 1rem; width: 80px; height: 80px; font-size: 2rem; }
+            .profile-stats { justify-content: center; margin-top: 0.5rem; }
+            .fixed-action-btn { bottom: 1rem; right: 1rem; }
+            .action-btn { width: 50px; height: 50px; font-size: 1.25rem; }
+        }
+        @media (max-width: 480px) {
+            .week-nav { justify-content: flex-start; }
+            .day-btn { padding: 0.4rem 0.6rem; min-width: 70px; }
+            .app-title { font-size: 1.5rem; } .app-subtitle { font-size: 0.9rem; }
+            header { padding: 1.5rem 1rem; }
+            .toggle-icon { top: 1.25rem; transform: none; }
+            .card-header.active .toggle-icon { transform: rotate(180deg); }
+             .exercises-table { font-size: 0.8rem; } /* Reduzir fonte da tabela em telas bem pequenas */
+             .exercises-table td::before { margin-right: 0.5rem; }
+             .start-timer-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem; gap: 0.2rem;}
+             .timer-display { min-width: 60px; margin-left: 0.3rem;}
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <div class="header-bg"></div>
+        <div class="header-content">
+            <h1 class="app-title">Plano de Treino 2025</h1>
+            <p class="app-subtitle">Divisão Push/Pull/Legs (PPL) x2</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-info">
+                <div class="profile-name">Seu Treino Personalizado</div>
+                <div class="profile-stats">
+                    <div class="stat-item"><i class="fas fa-calendar-check stat-icon"></i><span>6 dias/semana</span></div>
+                    <div class="stat-item"><i class="fas fa-dumbbell stat-icon"></i><span>39 exercícios</span></div>
+                    <div class="stat-item"><i class="fas fa-stopwatch stat-icon"></i><span>~60 min/sessão</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-nav" id="weekNav">
+            <button class="day-btn active" data-day="push1Card"><span class="day-short">SEG</span><span class="day-long">Push 1</span></button>
+            <button class="day-btn" data-day="pull1Card"><span class="day-short">TER</span><span class="day-long">Pull 1</span></button>
+            <button class="day-btn" data-day="legs1Card"><span class="day-short">QUA</span><span class="day-long">Legs 1</span></button>
+            <button class="day-btn" data-day="push2Card"><span class="day-short">QUI</span><span class="day-long">Push 2</span></button>
+            <button class="day-btn" data-day="pull2Card"><span class="day-short">SEX</span><span class="day-long">Pull 2</span></button>
+            <button class="day-btn" data-day="legs2Card"><span class="day-short">SÁB</span><span class="day-long">Legs 2</span></button>
+            <button class="day-btn" data-day="restDayCard"><span class="day-short">DOM</span><span class="day-long">Descanso</span></button>
+        </div>
+
+        <div class="workout-cards">
+            <div class="workout-card" id="push1Card">
+                <div class="card-header no-border" onclick="toggleCard('push1Content', this)">
+                    <div class="badge-container">
+                        <span class="badge badge-strength">Força</span>
+                        <span class="badge badge-hypertrophy">Hipertrofia</span>
+                    </div>
+                    <h2 class="day-title">Segunda-feira: Push 1</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="push1Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                            <table class="exercises-table">
+                                <thead>
+                                    <tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Supino Reto com Barra</td><td data-label="Séries">3-4</td><td data-label="Reps">6-10</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2-3 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Supino Inclinado com Halteres (30-45°)</td><td data-label="Séries">3</td><td data-label="Reps">8-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Desenvolvimento com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">8-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Paralelas (Dips)</td><td data-label="Séries">3</td><td data-label="Reps">6-10</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Tríceps Francês com Barra EZ</td><td data-label="Séries">3</td><td data-label="Reps">10-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Elevação Lateral com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section">
+                            <div class="cardio-title">Cardio Sugerido (Definição):</div>
+                            <div>LISS (Low-Intensity Steady State) - 30 a 40 minutos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-card" id="pull1Card">
+                <div class="card-header no-border" onclick="toggleCard('pull1Content', this)">
+                    <div class="badge-container"><span class="badge badge-strength">Força</span><span class="badge badge-hypertrophy">Hipertrofia</span></div>
+                    <h2 class="day-title">Terça-feira: Pull 1</h2><i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="pull1Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                             <table class="exercises-table">
+                                <thead><tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Barra Fixa (Pegada Pronada/Neutra)</td><td data-label="Séries">3-4</td><td data-label="Reps">Máx (6-12)</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2-3 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Remada Curvada com Barra</td><td data-label="Séries">3</td><td data-label="Reps">8-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Remada Unilateral com Halter</td><td data-label="Séries">3</td><td data-label="Reps">10-12 (cada)</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Rosca Direta com Barra EZ</td><td data-label="Séries">3</td><td data-label="Reps">8-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Face Pull (Polia Alta)</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Rosca Inclinada com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section"><div class="cardio-title">Cardio Sugerido (Definição):</div><div>LISS (Low-Intensity Steady State) - 30 a 40 minutos.</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-card" id="legs1Card">
+                <div class="card-header no-border" onclick="toggleCard('legs1Content', this)">
+                    <div class="badge-container"><span class="badge badge-strength">Força</span><span class="badge badge-hypertrophy">Hipertrofia</span></div>
+                    <h2 class="day-title">Quarta-feira: Legs 1</h2><i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="legs1Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                            <table class="exercises-table">
+                                <thead><tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Agachamento Livre/Hack Squat</td><td data-label="Séries">3-4</td><td data-label="Reps">6-10</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2.5-3 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Levantamento Terra Romeno (RDL)</td><td data-label="Séries">3</td><td data-label="Reps">8-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2-2.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Leg Press 45°</td><td data-label="Séries">3</td><td data-label="Reps">10-12</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Mesa Flexora</td><td data-label="Séries">3</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Panturrilha em Pé</td><td data-label="Séries">4</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1-1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Panturrilha Sentado</td><td data-label="Séries">3</td><td data-label="Reps">15-20</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section"><div class="cardio-title">Cardio Sugerido (Definição):</div><div>LISS (30 min) ou Nenhum.</div></div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="workout-card" id="push2Card">
+                <div class="card-header no-border" onclick="toggleCard('push2Content', this)">
+                    <div class="badge-container"><span class="badge badge-hypertrophy">Hipertrofia</span><span class="badge badge-metabolic">Metabólico</span></div>
+                    <h2 class="day-title">Quinta-feira: Push 2</h2><i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="push2Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                            <table class="exercises-table">
+                                <thead><tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Supino Inclinado com Halteres (30-45°)</td><td data-label="Séries">3-4</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Supino Reto (Máquina/Halteres)</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Crucifixo (Halteres/Cabos/Peck Deck)</td><td data-label="Séries">3</td><td data-label="Reps">12-18</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Elevação Lateral com Cabos</td><td data-label="Séries">4</td><td data-label="Reps">12-20</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Elevação Frontal (Halteres/Barra)</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Extensão de Tríceps na Polia Alta</td><td data-label="Séries">4</td><td data-label="Reps">12-20</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Tríceps Testa com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section"><div class="cardio-title">Cardio Sugerido (Definição):</div><div>HIIT (15-20 min) ou LISS (30 min).</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-card" id="pull2Card">
+                <div class="card-header no-border" onclick="toggleCard('pull2Content', this)">
+                    <div class="badge-container"><span class="badge badge-hypertrophy">Hipertrofia</span><span class="badge badge-metabolic">Metabólico</span></div>
+                    <h2 class="day-title">Sexta-feira: Pull 2</h2><i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="pull2Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                             <table class="exercises-table">
+                                <thead><tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Puxada Alta na Polia</td><td data-label="Séries">3-4</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Remada Baixa Sentado</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Remada na Máquina</td><td data-label="Séries">3</td><td data-label="Reps">12-18</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Pulldown com Braços Estendidos</td><td data-label="Séries">3</td><td data-label="Reps">15-20</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Rosca Martelo com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">12-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Rosca Concentrada com Halter</td><td data-label="Séries">3</td><td data-label="Reps">12-18 (cada)</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Crucifixo Inverso (Máquina/Halteres)</td><td data-label="Séries">4</td><td data-label="Reps">15-20</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section"><div class="cardio-title">Cardio Sugerido (Definição):</div><div>HIIT (15-20 min) ou LISS (30 min).</div></div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="workout-card" id="legs2Card">
+                <div class="card-header no-border" onclick="toggleCard('legs2Content', this)">
+                    <div class="badge-container"><span class="badge badge-hypertrophy">Hipertrofia</span><span class="badge badge-metabolic">Metabólico</span></div>
+                    <h2 class="day-title">Sábado: Legs 2</h2><i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-content" id="legs2Content">
+                    <div class="content-wrapper">
+                        <div class="table-responsive">
+                            <table class="exercises-table">
+                                <thead><tr><th>Exercício</th><th>Séries</th><th>Reps</th><th>RIR</th><th class="rest-time-header">Descanso</th><th>Timer</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-label="Exercício">Elevação Pélvica com Barra</td><td data-label="Séries">3-4</td><td data-label="Reps">10-15</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5-2 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Agachamento Búlgaro com Halteres</td><td data-label="Séries">3</td><td data-label="Reps">10-15 (cada)</td><td data-label="RIR">1-2</td><td data-label="Descanso" class="rest-time-data">1.5 min</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Cadeira Extensora</td><td data-label="Séries">3</td><td data-label="Reps">15-20</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Mesa Flexora</td><td data-label="Séries">4</td><td data-label="Reps">12-18</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60-90 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Abdução de Quadril</td><td data-label="Séries">3</td><td data-label="Reps">15-25</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                    <tr><td data-label="Exercício">Panturrilha (Leg Press/Sentado)</td><td data-label="Séries">4</td><td data-label="Reps">15-25</td><td data-label="RIR">0-1</td><td data-label="Descanso" class="rest-time-data">60 seg</td><td data-label="Timer" class="timer-cell"><button class="start-timer-btn" aria-label="Iniciar Timer"><i class="fas fa-stopwatch"></i><span class="timer-btn-text">Iniciar</span></button><span class="timer-display"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cardio-section"><div class="cardio-title">Cardio Sugerido (Definição):</div><div>LISS (30-40 min).</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-card rest-day-card" id="restDayCard">
+                <i class="fas fa-couch rest-day-icon"></i>
+                <h2 class="rest-day-title">Domingo: Descanso</h2>
+                <p class="rest-day-text">Descanso Total ou Descanso Ativo Leve (ex: Mobilidade, Caminhada Leve). A recuperação é crucial para o progresso. Priorize o sono e a nutrição.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Plano de Treino. Adaptado e Melhorado.</p>
+        <p>Consulte um profissional antes de iniciar qualquer programa de exercícios.</p>
+    </footer>
+
+    <div class="fixed-action-btn">
+        <button class="action-btn" aria-label="Ação Rápida"><i class="fas fa-plus"></i></button>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme === 'dark');
+        } else {
+            htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            updateThemeIcon(prefersDark);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme === 'dark');
+        });
+
+        function updateThemeIcon(isDark) {
+            const icon = themeToggle.querySelector('i');
+            if (isDark) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); } 
+            else { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+        }
+
+        function toggleCard(contentId, headerElement) {
+            const content = document.getElementById(contentId);
+            const icon = headerElement.querySelector('.toggle-icon');
+            const isActive = content.classList.toggle('active');
+            if (icon) { icon.classList.toggle('rotate', isActive); } // Classe rotate fará a rotação no CSS
+            headerElement.classList.toggle('no-border', !isActive);
+            headerElement.classList.toggle('active', isActive);
+            if (isActive) { requestAnimationFrame(() => { content.style.maxHeight = content.scrollHeight + 'px'; }); } 
+            else { content.style.maxHeight = '0'; }
+        }
+
+        const dayButtons = document.querySelectorAll('.day-btn');
+        dayButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                setActiveDay(button);
+                scrollToCard(button.dataset.day);
+            });
+        });
+
+        function setActiveDay(activeButton) {
+            dayButtons.forEach(btn => btn.classList.remove('active'));
+            activeButton.classList.add('active');
+        }
+
+        function scrollToCard(cardId) {
+            const cardElement = document.getElementById(cardId);
+            if (cardElement) {
+                const yOffset = -80; 
+                const elementPosition = cardElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset + yOffset;
+                window.scrollTo({top: offsetPosition});
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstDayButton = document.querySelector('.day-btn');
+            if (firstDayButton) {
+                setActiveDay(firstDayButton);
+                const firstCardId = firstDayButton.dataset.day;
+                if (firstCardId && firstCardId !== 'restDayCard') {
+                    const firstCard = document.getElementById(firstCardId);
+                    if (firstCard) {
+                        const contentEl = firstCard.querySelector('.card-content');
+                        const headerEl = firstCard.querySelector('.card-header');
+                        if (contentEl && headerEl && !contentEl.classList.contains('active')) {
+                           toggleCard(contentEl.id, headerEl);
+                        }
+                    }
+                }
+            }
+
+            // Timer Logic
+            const timersMap = new Map(); 
+
+            document.querySelectorAll('.start-timer-btn').forEach(button => {
+                const row = button.closest('tr');
+                if(row) {
+                    const timerDisplay = row.querySelector('.timer-display');
+                    if(timerDisplay) timerDisplay.textContent = "00:00"; // Initial display
+                }
+                button.addEventListener('click', handleTimerStart);
+            });
+
+            function handleTimerStart(event) {
+                const button = event.currentTarget;
+                const row = button.closest('tr');
+                if (!row) return;
+
+                const restTimeDataCell = row.querySelector('.rest-time-data');
+                if (!restTimeDataCell) { console.error("Rest time data cell not found"); return; }
+
+                const restTimeString = restTimeDataCell.textContent.trim();
+                const durationSeconds = parseRestTime(restTimeString);
+
+                const timerDisplay = row.querySelector('.timer-display');
+                if (!timerDisplay) { console.error("Timer display not found"); return; }
+                const buttonTextSpan = button.querySelector('.timer-btn-text');
+
+                if (isNaN(durationSeconds) || durationSeconds <= 0) {
+                    timerDisplay.textContent = "Inválido";
+                    setTimeout(() => { timerDisplay.textContent = "00:00"; }, 2000);
+                    return;
+                }
+
+                if (timersMap.has(button)) { // Timer is running, stop it
+                    clearInterval(timersMap.get(button));
+                    timersMap.delete(button);
+                    button.disabled = false;
+                    if(buttonTextSpan) buttonTextSpan.textContent = 'Iniciar';
+                    timerDisplay.textContent = formatTime(durationSeconds); // Show full time when stopped
+                    return;
+                }
+
+                // Start new timer
+                button.disabled = true; // Disable while setting up
+                if(buttonTextSpan) buttonTextSpan.textContent = 'Parar';
+                let timeLeft = durationSeconds;
+                timerDisplay.textContent = formatTime(timeLeft);
+                button.disabled = false; // Re-enable to allow stopping
+
+                const intervalId = setInterval(() => {
+                    timeLeft--;
+                    timerDisplay.textContent = formatTime(timeLeft);
+
+                    if (timeLeft <= 0) {
+                        clearInterval(intervalId);
+                        timersMap.delete(button);
+                        button.disabled = false;
+                        if(buttonTextSpan) buttonTextSpan.textContent = 'Iniciar';
+                        timerDisplay.textContent = 'Finalizado!';
+                        try { new Audio('https://cdn.jsdelivr.net/gh/bigsoundbank/bigsoundbank.github.io/sounds/ notificación_de_sms.mp3').play(); } catch(e) { console.warn("Audio notification failed to play.");}
+
+
+                        setTimeout(() => { 
+                            if (timerDisplay.textContent === 'Finalizado!') {
+                                timerDisplay.textContent = formatTime(durationSeconds); // Reset to initial duration
+                            }
+                        }, 3000);
+                    }
+                }, 1000);
+                timersMap.set(button, intervalId);
+            }
+
+            function parseRestTime(timeString) {
+                timeString = timeString.toLowerCase().replace(/\s+/g, '');
+                let seconds = 0;
+                const minRangeMatch = timeString.match(/(\d+\.?\d*)-(\d+\.?\d*)min/);
+                const segRangeMatch = timeString.match(/(\d+)-(\d+)seg/);
+                const minMatch = timeString.match(/(\d+\.?\d*)min/);
+                const segMatch = timeString.match(/(\d+)seg/);
+
+                if (minRangeMatch) seconds = parseFloat(minRangeMatch[2]) * 60;
+                else if (segRangeMatch) seconds = parseInt(segRangeMatch[2], 10);
+                else if (minMatch) seconds = parseFloat(minMatch[1]) * 60;
+                else if (segMatch) seconds = parseInt(segMatch[1], 10);
+                else { const plainNum = timeString.match(/^(\d+)$/); if(plainNum) seconds = parseInt(plainNum[1],10); }
+                return Math.round(seconds);
+            }
+
+            function formatTime(totalSeconds) {
+                if (totalSeconds < 0) totalSeconds = 0;
+                const minutes = Math.floor(totalSeconds / 60);
+                const secondsValue = totalSeconds % 60;
+                return `${String(minutes).padStart(2, '0')}:${String(secondsValue).padStart(2, '0')}`;
+            }
+        });
+    </script>
+</body>
+</html>
